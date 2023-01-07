@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 100
-  velocidad: 0.009
+  velocidad: 0.006
   direccionMovimiento: 0
   bulletDmged: 30
   worldControlx: {fileID: 0}
