@@ -57,6 +57,16 @@ public class Enemy : MonoBehaviour
 
             }
         }
+
+        //Si colisiona con una torreta cuerpo a cuerpo...
+        if (collision.collider.gameObject.tag == "closeturret")
+        {
+            
+            int segundos = collision.collider.gameObject.GetComponent<CloseTurretScript>().segundosBloqueo;
+            int nuevoSegundo = segundos;
+            Destroy(collision.collider.gameObject);
+            StartCoroutine(EnemigoBloqueado(nuevoSegundo));
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -72,5 +82,13 @@ public class Enemy : MonoBehaviour
             camara.GetComponent<worldControl>().quitarVida(2);
             Destroy(this.gameObject);
         }
+    }
+
+    IEnumerator EnemigoBloqueado(int segundos)
+    {
+        float velocidadPrevia = velocidad;
+        velocidad = 0;
+        yield return new WaitForSeconds(segundos);
+        velocidad = velocidadPrevia;
     }
 }
