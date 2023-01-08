@@ -5,12 +5,14 @@ using TMPro;
 
 public class worldControl : MonoBehaviour
 {
+    public int enemiesAppeared = 0;
     public int monedas = 50;
     public int vida = 100;
     public GameObject prefab;
     public GameObject prefab2;
     public TMP_Text textoCanvas;
     public TMP_Text textoCanvasMoney;
+    public TMP_Text textoEnemigos; 
     public GameObject start;
     public float spawnInterval = 5.0f;
     public float moneyInterval = 9.0f;
@@ -45,8 +47,8 @@ public class worldControl : MonoBehaviour
 
 
     }
-        void Spawn()
-        {
+    void Spawn()
+    {
         counterToBigEnemy--;
 
         if (counterToBigEnemy == 0)
@@ -60,7 +62,8 @@ public class worldControl : MonoBehaviour
             // Crea una instancia del prefab1 en la posición del start
             enemigos.Add(Instantiate(prefab, start.transform.position, Quaternion.identity));
         }
-      
+
+        enemiesAppeared++;
     }
 
     // Update is called once per frame
@@ -71,6 +74,7 @@ public class worldControl : MonoBehaviour
         //Finalizar pantalla
         }
         textoCanvasMoney.text = "Money: " + monedas.ToString();
+        textoEnemigos.text = "Enemies Spawned: " + enemiesAppeared.ToString();
     }
 
     public void quitarVida(int vida) 

@@ -11,11 +11,13 @@ public class Enemy : MonoBehaviour
     public int bulletDmged = 30;
     public worldControl worldControlx;
     public int dineroPorMuerte;
+    GameSoundManager soundManager;
     // Start is called before the first frame update
     void Start()
     {
         worldControlx = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<worldControl>();
         camara = GameObject.FindGameObjectsWithTag("MainCamera")[0];
+        soundManager = GameObject.Find("SoundManager").GetComponent<GameSoundManager>();
     }
 
     // Update is called once per frame
@@ -61,11 +63,12 @@ public class Enemy : MonoBehaviour
         //Si colisiona con una torreta cuerpo a cuerpo...
         if (collision.collider.gameObject.tag == "closeturret")
         {
-            
-            int segundos = collision.collider.gameObject.GetComponent<CloseTurretScript>().segundosBloqueo;
-            int nuevoSegundo = segundos;
-            Destroy(collision.collider.gameObject);
-            StartCoroutine(EnemigoBloqueado(nuevoSegundo));
+            GameObject torreta = collision.collider.gameObject;
+            int segundos = torreta.GetComponent<CloseTurretScript>().segundosBloqueo;
+            torreta.GetComponent<CloseTurretScript>().closeObjectiveAt.GetComponent<ObjectiveScript>().ocupado = false;
+            Destroy(torreta);
+            soundManager.SelectAudio(3, 1);
+            StartCoroutine(EnemigoBloqueado(segundos));
         }
     }
 
