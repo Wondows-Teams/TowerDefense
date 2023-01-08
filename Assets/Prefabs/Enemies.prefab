@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 100
-  velocidad: 0.006
+  velocidad: 1.4
   direccionMovimiento: 0
   bulletDmged: 30
   worldControlx: {fileID: 0}
@@ -125,7 +125,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &7149235832495203494
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

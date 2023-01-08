@@ -83,6 +83,7 @@ public class SpawnCloseTurretControl : MonoBehaviour, IPointerDownHandler, IPoin
                     Vector3 aux = torretaInstanciada.GetComponent<CloseTurretScript>().closeObjectiveAt.transform.position;
                     aux.z = -3;
                     torretaInstanciada.transform.position = aux;
+                    torretaInstanciada.layer = LayerMask.NameToLayer("closeTurret");
 
                 }
                 else
