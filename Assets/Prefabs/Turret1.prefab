@@ -58,6 +58,7 @@ MonoBehaviour:
   shootForce: 8
   tripleShoot: 0
   angleTriple: 0
+  audioManager: {fileID: 0}
 --- !u!60 &8223676279973537918
 PolygonCollider2D:
   m_ObjectHideFlags: 0

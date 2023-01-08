@@ -17,13 +17,14 @@ public class TurretScript : MonoBehaviour
     public float shootForce;
     public bool tripleShoot;
     public float angleTriple;
+    [SerializeField] GameSoundManager audioManager;
 
     void Start()
     {
         worldControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<worldControl>();
         inObjective = false;
         shooting = false;
-
+        audioManager = GameObject.Find("SoundManager").GetComponent<GameSoundManager>();    
     }
     public void startShotting()
     {
@@ -106,6 +107,7 @@ public class TurretScript : MonoBehaviour
 
             // Instancia una nueva bola como hijo del GameObject
             GameObject ball = Instantiate(ballPrefab, this.transform.position, Quaternion.identity);
+            audioManager.SelectAudio(0, 1);
 
             // Añade una fuerza a la bola para que salga disparada
             Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();

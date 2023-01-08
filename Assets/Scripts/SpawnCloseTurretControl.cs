@@ -13,13 +13,14 @@ public class SpawnCloseTurretControl : MonoBehaviour, IPointerDownHandler, IPoin
     public GameObject torretaInstanciada;
     public worldControl worldControl;
     public int precioTorreta;
-
+    GameSoundManager soundManager;
 
     // Start is called before the first frame update
     void Start()
     {
         worldControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<worldControl>();
         agarrando = false;
+        soundManager = GameObject.Find("SoundManager").GetComponent<GameSoundManager>();
 
     }
 
@@ -54,6 +55,7 @@ public class SpawnCloseTurretControl : MonoBehaviour, IPointerDownHandler, IPoin
         if (worldControl.monedas < precioTorreta)
         {
             worldControl.alert("Dinero insuficiente");
+            soundManager.SelectAudio(2, 1);
         }
         //Si tengo dinero me lo resta y puedo hacer lo demas
         else
@@ -83,6 +85,8 @@ public class SpawnCloseTurretControl : MonoBehaviour, IPointerDownHandler, IPoin
                     Vector3 aux = torretaInstanciada.GetComponent<CloseTurretScript>().closeObjectiveAt.transform.position;
                     aux.z = -3;
                     torretaInstanciada.transform.position = aux;
+
+                    soundManager.SelectAudio(1, 1);
 
                 }
                 else

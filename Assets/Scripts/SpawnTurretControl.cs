@@ -14,6 +14,7 @@ public class SpawnTurretControl : MonoBehaviour, IPointerDownHandler, IPointerUp
     public GameObject torretaInstanciada;
     public worldControl worldControl;
     public int precioTorreta;
+    GameSoundManager soundManager;
 
 
     // Start is called before the first frame update
@@ -21,7 +22,8 @@ public class SpawnTurretControl : MonoBehaviour, IPointerDownHandler, IPointerUp
     {
         worldControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<worldControl>();
         agarrando = false;
-        
+        soundManager = GameObject.Find("SoundManager").GetComponent<GameSoundManager>();
+
     }
 
     // Update is called once per frame
@@ -54,6 +56,7 @@ public class SpawnTurretControl : MonoBehaviour, IPointerDownHandler, IPointerUp
         if (worldControl.monedas < precioTorreta)
         {
             worldControl.alert("Dinero insuficiente");
+            soundManager.SelectAudio(2, 1);
         }
         //Si tengo dinero me lo resta y puedo hacer lo demas
         else
@@ -84,6 +87,7 @@ public class SpawnTurretControl : MonoBehaviour, IPointerDownHandler, IPointerUp
                     torretaInstanciada.transform.position = aux;
 
                     torretaInstanciada.GetComponent<TurretScript>().startShotting();
+                    soundManager.SelectAudio(1, 1);
                 }
                 else
                 {
