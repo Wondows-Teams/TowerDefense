@@ -10,6 +10,8 @@ TagManager:
   - objective
   - aux
   - bullet
+  - closeturret
+  - closeobjective
   layers:
   - Default
   - TransparentFX
