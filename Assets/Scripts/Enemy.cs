@@ -47,29 +47,6 @@ public class Enemy : MonoBehaviour
        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //OLD MOVEMENT
-        //if (this.direccionMovimiento == Giro.direccion.izquierda)
-        //{
-        //    transform.Translate(-velocidad, 0, 0);
-        //}
-        //else if (this.direccionMovimiento == Giro.direccion.derecha)
-        //{
-        //    transform.Translate(velocidad, 0, 0);
-        //}
-        //else if (this.direccionMovimiento == Giro.direccion.arriba)
-        //{
-        //    transform.Translate(0, velocidad, 0);
-        //}
-        //else if (this.direccionMovimiento == Giro.direccion.abajo)
-        //{
-        //    transform.Translate(0,-velocidad, 0);
-        //}
-
-
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
