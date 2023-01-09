@@ -18,6 +18,7 @@ public class TurretScript : MonoBehaviour
     public bool tripleShoot;
     public float angleTriple;
     [SerializeField] GameSoundManager audioManager;
+    [SerializeField] Animator animator;
 
     void Start()
     {
@@ -43,6 +44,11 @@ public class TurretScript : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
+        //desactiva la animacion de disparo
+        else {
+            animator.SetBool("IsShooting", false);
+        }
+
     }
     public GameObject FindClosest(Vector2 position, GameObject[] objects)
     {
@@ -112,6 +118,10 @@ public class TurretScript : MonoBehaviour
             // Añade una fuerza a la bola para que salga disparada
             Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
             rb.AddForce(transform.right * 0.005f*shootForce);
+
+            //Activa la animacion de disparo
+            animator.SetBool("IsShooting", true);
+            Debug.Log("disparo");
 
             //Si hay disparo triple entonces se disparan dos bolas mas
             if (tripleShoot)
