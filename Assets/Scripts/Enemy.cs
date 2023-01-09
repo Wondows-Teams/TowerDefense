@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public int damage;
     public int life;
     public float velocidad = 1.0f;
     private float velocidadAux;
@@ -14,6 +15,7 @@ public class Enemy : MonoBehaviour
     public int dineroPorMuerte;
     GameSoundManager soundManager;
     Rigidbody2D rb2d;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -105,7 +107,7 @@ public class Enemy : MonoBehaviour
 
         if (collision.gameObject.tag == "end")
         {
-            camara.GetComponent<worldControl>().quitarVida(2);
+            camara.GetComponent<worldControl>().quitarVida(damage, this.gameObject);
             Destroy(this.gameObject);
         }
     }

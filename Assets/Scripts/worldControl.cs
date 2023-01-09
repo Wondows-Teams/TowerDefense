@@ -8,8 +8,11 @@ public class worldControl : MonoBehaviour
     public int enemiesAppeared = 0;
     public int monedas = 50;
     public int vida = 100;
+    public int maxEnemies;
     public GameObject prefab;
     public GameObject prefab2;
+    public GameObject defeatScreen;
+    public GameObject victoryScreen;
     public TMP_Text textoCanvas;
     public TMP_Text textoCanvasMoney;
     public TMP_Text textoEnemigos; 
@@ -49,36 +52,50 @@ public class worldControl : MonoBehaviour
     }
     void Spawn()
     {
-        counterToBigEnemy--;
-
-        if (counterToBigEnemy == 0)
+        if (enemiesAppeared < maxEnemies)
         {
-            counterToBigEnemy = counterToBigEnemyAux;
-            // Crea una instancia del prefab2 en la posición del start
-            enemigos.Add(Instantiate(prefab2, start.transform.position, Quaternion.identity));
-        }
-        else
-        {
-            // Crea una instancia del prefab1 en la posición del start
-            enemigos.Add(Instantiate(prefab, start.transform.position, Quaternion.identity));
-        }
+            counterToBigEnemy--;
 
-        enemiesAppeared++;
+            if (counterToBigEnemy == 0)
+            {
+                counterToBigEnemy = counterToBigEnemyAux;
+                // Crea una instancia del prefab2 en la posición del start
+                enemigos.Add(Instantiate(prefab2, start.transform.position, Quaternion.identity));
+            }
+            else
+            {
+                // Crea una instancia del prefab1 en la posición del start
+                enemigos.Add(Instantiate(prefab, start.transform.position, Quaternion.identity));
+            }
+
+            enemiesAppeared++;
+
+        } else
+        {
+            //Si se ha ganado, activa la pantalla de victoria
+            if (enemigos.Count == 0)
+            {
+                victoryScreen.SetActive(true);
+            }
+        }
+       
     }
 
     // Update is called once per frame
     void Update()
     {
         textoCanvas.text = "Life: "+ vida.ToString();
-        if (vida < 0) { 
-        //Finalizar pantalla
+        if (vida < 0) {
+            //Finalizar pantalla
+            defeatScreen.SetActive(true);
         }
         textoCanvasMoney.text = "Money: " + monedas.ToString();
         textoEnemigos.text = "Enemies Spawned: " + enemiesAppeared.ToString();
     }
 
-    public void quitarVida(int vida) 
+    public void quitarVida(int vida, GameObject destroyed) 
     {
         this.vida -= vida;
+        enemigos.Remove(destroyed);
     }
 }
