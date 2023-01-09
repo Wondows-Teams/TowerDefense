@@ -86,22 +86,33 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Giro")
         {
             Giro giro = collision.gameObject.GetComponent<Giro>();
+            bool esdiferente = false;
+            if (this.direccionMovimiento != giro.direccionGiro)
+            {
+                esdiferente = true;
+            }
             this.direccionMovimiento = giro.direccionGiro;
             if (this.direccionMovimiento == Giro.direccion.arriba)
             {
                 rb2d.velocity = new Vector2(0, velocidad);
+
             }
             else if (this.direccionMovimiento == Giro.direccion.abajo)
             {
                 rb2d.velocity = new Vector2(0, -velocidad);
+
             }
             else if (this.direccionMovimiento == Giro.direccion.izquierda)
             {
                 rb2d.velocity = new Vector2(-velocidad, 0);
+
+
             }
             else if (this.direccionMovimiento == Giro.direccion.derecha)
             {
                 rb2d.velocity = new Vector2(velocidad, 0);
+
+
             }
         }
 
@@ -111,6 +122,11 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    public void FlipXY()
+    {
+        transform.Rotate(0f, 180f, 0f);
+    }
+
 
     IEnumerator EnemigoBloqueado(int segundos)
     {   
