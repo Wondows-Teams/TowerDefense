@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2624384286985056492}
   - component: {fileID: 6867011408538886779}
   - component: {fileID: 3471517401194785034}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: CloseTurret
   m_TagString: closeturret
   m_Icon: {fileID: 0}

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ShadowProjector
+  m_Name: ShadowProjectorLevel2
   m_Shader: {fileID: 4800000, guid: 950bea8b1f87776428ee7ab2f96efcad, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -41,7 +41,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadowTex:
-        m_Texture: {fileID: 2800000, guid: 977c8f8364343cf4b88e2516ec39aae0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5daa45a002a7f474f94ee11c457d90a9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
