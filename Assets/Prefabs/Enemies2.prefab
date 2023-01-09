@@ -107,6 +107,7 @@ MonoBehaviour:
   bulletDmged: 30
   worldControlx: {fileID: 0}
   dineroPorMuerte: 50
+  mesh: {fileID: 6349497404779363362, guid: dac86dc0ce0fce940b3f3fffd1c842a2, type: 3}
 --- !u!50 &1231743397862758410
 Rigidbody2D:
   serializedVersion: 4

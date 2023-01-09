@@ -10,7 +10,7 @@ public class TurretScript : MonoBehaviour
     public GameObject objectiveAt;
     public GameObject enemyShooting;
     public GameObject ballPrefab; // El prefab de la bola que quieres disparar
-    public float shootInterval = 3.0f; // El intervalo entre disparos, en segundos
+    public float shootInterval = 1.0f; // El intervalo entre disparos, en segundos
     public bool shooting;
     public worldControl worldControl;
     public float maxDistance;
@@ -42,7 +42,7 @@ public class TurretScript : MonoBehaviour
         {
             Vector3 direction = (enemyShooting.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            //transform.rotation = Quaternion.Euler(0, 0, angle);
         }
         //desactiva la animacion de disparo
         else {
@@ -108,7 +108,7 @@ public class TurretScript : MonoBehaviour
             //Rota 
             Vector3 direction = (enemyShooting.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            //transform.rotation = Quaternion.Euler(0, 0, angle);
 
 
             // Instancia una nueva bola como hijo del GameObject
@@ -117,7 +117,7 @@ public class TurretScript : MonoBehaviour
 
             // Añade una fuerza a la bola para que salga disparada
             Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
-            rb.AddForce(transform.right * 0.005f*shootForce);
+            rb.AddForce(direction * 0.005f*shootForce);
 
             //Activa la animacion de disparo
             animator.SetBool("IsShooting", true);

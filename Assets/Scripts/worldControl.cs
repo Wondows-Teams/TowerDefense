@@ -17,6 +17,8 @@ public class worldControl : MonoBehaviour
     public TMP_Text textoCanvasMoney;
     public TMP_Text textoEnemigos; 
     public GameObject start;
+    public GameObject start2;
+    public GameObject start3;
     public float spawnInterval = 5.0f;
     public float moneyInterval = 9.0f;
     public List<GameObject> enemigos;
@@ -59,16 +61,74 @@ public class worldControl : MonoBehaviour
             if (counterToBigEnemy == 0)
             {
                 counterToBigEnemy = counterToBigEnemyAux;
-                // Crea una instancia del prefab2 en la posición del start
-                enemigos.Add(Instantiate(prefab2, start.transform.position, Quaternion.identity));
+                // Crea una instancia del EnemigoGrande en la posición del start para cada start
+                GameObject enemigo = Instantiate(prefab2, start.transform.position, Quaternion.identity);
+                enemigo.GetComponent<Enemy>().direccionMovimiento = start.GetComponent<direccionStart>().direccionSalida;
+                if (enemigo.GetComponent<Enemy>().direccionMovimiento == Giro.direccion.izquierda)
+                {
+                    enemigo.GetComponent<Enemy>().FlipXY();
+                }
+                enemigos.Add(enemigo);
+
+                GameObject enemigo2 = Instantiate(prefab2, start2.transform.position, Quaternion.identity);
+                enemigo2.GetComponent<Enemy>().direccionMovimiento = start2.GetComponent<direccionStart>().direccionSalida;
+                if (enemigo2.GetComponent<Enemy>().direccionMovimiento == Giro.direccion.izquierda)
+                {
+                    enemigo2.GetComponent<Enemy>().FlipXY();
+                }
+                enemigos.Add(enemigo2);
+
+                if(start3 != null)
+                {
+                    GameObject enemigo3 = Instantiate(prefab2, start3.transform.position, Quaternion.identity);
+                    enemigo3.GetComponent<Enemy>().direccionMovimiento = start3.GetComponent<direccionStart>().direccionSalida;
+                    if (enemigo3.GetComponent<Enemy>().direccionMovimiento == Giro.direccion.izquierda)
+                    {
+                        enemigo3.GetComponent<Enemy>().FlipXY();
+                    }
+                    enemigos.Add(enemigo3);
+                }
+                
             }
             else
             {
-                // Crea una instancia del prefab1 en la posición del start
-                enemigos.Add(Instantiate(prefab, start.transform.position, Quaternion.identity));
+                // Crea una instancia del EnemigoPeque en la posición del start
+                GameObject enemigo = Instantiate(prefab, start.transform.position, Quaternion.identity);
+                enemigo.GetComponent<Enemy>().direccionMovimiento = start.GetComponent<direccionStart>().direccionSalida;
+                if(enemigo.GetComponent<Enemy>().direccionMovimiento == Giro.direccion.derecha || enemigo.GetComponent<Enemy>().direccionMovimiento == Giro.direccion.arriba){
+                    enemigo.GetComponent<Enemy>().FlipXY();
+                }
+                enemigos.Add(enemigo);
+
+                GameObject enemigo2 = Instantiate(prefab, start2.transform.position, Quaternion.identity);
+                enemigo2.GetComponent<Enemy>().direccionMovimiento = start2.GetComponent<direccionStart>().direccionSalida;
+                enemigos.Add(enemigo2);
+                if (enemigo2.GetComponent<Enemy>().direccionMovimiento == Giro.direccion.derecha || enemigo2.GetComponent<Enemy>().direccionMovimiento == Giro.direccion.arriba)
+                {
+                    enemigo2.GetComponent<Enemy>().FlipXY();
+                }
+
+                if (start3 != null)
+                {
+                    GameObject enemigo3 = Instantiate(prefab, start3.transform.position, Quaternion.identity);
+                    enemigo3.GetComponent<Enemy>().direccionMovimiento = start3.GetComponent<direccionStart>().direccionSalida;
+                    enemigos.Add(enemigo3);
+                    if (enemigo3.GetComponent<Enemy>().direccionMovimiento == Giro.direccion.derecha || enemigo3.GetComponent<Enemy>().direccionMovimiento == Giro.direccion.arriba)
+                    {
+                        enemigo3.GetComponent<Enemy>().FlipXY();
+                    }
+                }
+
             }
 
-            enemiesAppeared++;
+            if (start3 != null)
+            {
+                enemiesAppeared += 3;
+            }
+            else
+            {
+                enemiesAppeared += 2;
+            }
 
         } else
         {
