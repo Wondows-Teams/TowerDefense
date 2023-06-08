@@ -8,6 +8,7 @@ public class CloseTurretScript : MonoBehaviour
     public bool inCloseObjective;
     public GameObject closeObjectiveAt;
     public worldControl worldControl;
+    private int torretasEnContacto = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,8 @@ public class CloseTurretScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "closeobjective")
         {
+            torretasEnContacto += 1;
+                
             inCloseObjective = true;
             closeObjectiveAt = collision.gameObject;
         }
@@ -36,7 +39,11 @@ public class CloseTurretScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "closeobjective")
         {
+            torretasEnContacto -= 1;
+            if (torretasEnContacto == 0)
+            {
             inCloseObjective = false;
+            }
         }
 
 

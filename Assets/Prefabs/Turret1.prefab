@@ -56,7 +56,7 @@ MonoBehaviour:
   shooting: 0
   worldControl: {fileID: 0}
   maxDistance: 5
-  shootForce: 8
+  shootForce: 10
   tripleShoot: 0
   angleTriple: 0
   audioManager: {fileID: 0}

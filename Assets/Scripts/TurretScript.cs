@@ -16,6 +16,7 @@ public class TurretScript : MonoBehaviour
     public float maxDistance;
     public float shootForce;
     public bool tripleShoot;
+    private int torretasEnContacto = 0;
     public float angleTriple;
     [SerializeField] GameSoundManager audioManager;
     [SerializeField] Animator animator;
@@ -42,11 +43,13 @@ public class TurretScript : MonoBehaviour
         {
             Vector3 direction = (enemyShooting.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            //transform.rotation = Quaternion.Euler(0, 0, angle);
+            transform.rotation = Quaternion.Euler(0, 0, angle);
         }
         //desactiva la animacion de disparo
         else {
+            try { 
             animator.SetBool("IsShooting", false);
+            } catch { }
         }
 
     }
@@ -108,8 +111,6 @@ public class TurretScript : MonoBehaviour
             //Rota 
             Vector3 direction = (enemyShooting.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            //transform.rotation = Quaternion.Euler(0, 0, angle);
-
 
             // Instancia una nueva bola como hijo del GameObject
             GameObject ball = Instantiate(ballPrefab, this.transform.position, Quaternion.identity);
@@ -119,13 +120,19 @@ public class TurretScript : MonoBehaviour
             Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
             rb.AddForce(direction * 0.005f*shootForce);
 
+            try { 
             //Activa la animacion de disparo
             animator.SetBool("IsShooting", true);
             Debug.Log("disparo");
+            } catch { 
+            }
+
 
             //Si hay disparo triple entonces se disparan dos bolas mas
             if (tripleShoot)
             {
+                //transform.rotation = Quaternion.Euler(0, 0, angle);
+
                 //shoot2
                 // Instancia una nueva bola como hijo del GameObject
                 GameObject ball2 = Instantiate(ballPrefab, this.transform.position, Quaternion.identity);
@@ -153,6 +160,7 @@ public class TurretScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "objective")
         {
+            torretasEnContacto += 1;
             inObjective = true;
             objectiveAt = collision.gameObject;
         }
@@ -163,9 +171,11 @@ public class TurretScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "objective")
         {
+            torretasEnContacto -= 1;
+            if (torretasEnContacto == 0)
+            { 
             inObjective = false;
+            }
         }
-
-
     }
 }

@@ -31,7 +31,6 @@ public class Enemy : MonoBehaviour
         {
             rb2d.velocity = new Vector2(0, -velocidad);
         }
-        else if (this.direccionMovimiento == Giro.direccion.izquierda)
         soundManager = GameObject.Find("SoundManager").GetComponent<GameSoundManager>();
     }
 

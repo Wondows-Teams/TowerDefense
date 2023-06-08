@@ -30,7 +30,6 @@ public class worldControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         counterToBigEnemyAux = counterToBigEnemy;
         InvokeRepeating("Spawn", spawnInterval, spawnInterval);
         InvokeRepeating("GetMoney", moneyInterval, moneyInterval);
@@ -39,7 +38,6 @@ public class worldControl : MonoBehaviour
     {
         alertText.text = "ALERT: " + msg;
         Invoke("OffAlert", 1);
-
     }
     public void OffAlert()
     {
@@ -136,6 +134,7 @@ public class worldControl : MonoBehaviour
             if (enemigos.Count == 0)
             {
                 victoryScreen.SetActive(true);
+                Time.timeScale = 0;
             }
         }
        
@@ -148,6 +147,7 @@ public class worldControl : MonoBehaviour
         if (vida < 0) {
             //Finalizar pantalla
             defeatScreen.SetActive(true);
+            Time.timeScale = 0;
         }
         textoCanvasMoney.text = "Money: " + monedas.ToString();
         textoEnemigos.text = "Enemies Spawned: " + enemiesAppeared.ToString();
