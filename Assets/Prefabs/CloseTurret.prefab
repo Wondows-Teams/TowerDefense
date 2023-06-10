@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c4df6be2aa8a040a4b4c283b67bc2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  segundosBloqueo: 3
+  segundosBloqueo: 6
   inCloseObjective: 0
   closeObjectiveAt: {fileID: 0}
   worldControl: {fileID: 0}
