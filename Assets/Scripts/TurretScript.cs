@@ -43,7 +43,7 @@ public class TurretScript : MonoBehaviour
         {
             Vector3 direction = (enemyShooting.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            if(tripleShoot) transform.rotation = Quaternion.Euler(0, 0, angle);
         }
         //desactiva la animacion de disparo
         else {

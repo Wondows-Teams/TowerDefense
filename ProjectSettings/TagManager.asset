@@ -12,6 +12,7 @@ TagManager:
   - bullet
   - closeturret
   - closeobjective
+  - torretaNormal
   layers:
   - Default
   - TransparentFX

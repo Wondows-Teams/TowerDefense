@@ -26,6 +26,8 @@ public class worldControl : MonoBehaviour
     private int counterToBigEnemyAux = 3;
     public int moneyAutoCantidad;
     public TMP_Text alertText;
+    public int TorretasNormalesGeneradas = 0;
+    public int TorretasTriplesGeneradas = 0;
 
     // Start is called before the first frame update
     void Start()

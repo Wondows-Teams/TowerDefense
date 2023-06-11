@@ -14,6 +14,7 @@ public class SpawnTurretControl : MonoBehaviour, IPointerDownHandler, IPointerUp
     public GameObject torretaInstanciada;
     public worldControl worldControl;
     public int precioTorreta;
+    public string tipoTorreta;
     GameSoundManager soundManager;
 
 
@@ -57,6 +58,18 @@ public class SpawnTurretControl : MonoBehaviour, IPointerDownHandler, IPointerUp
         {
             worldControl.alert("Dinero insuficiente");
             soundManager.SelectAudio(2, 1);
+        } 
+        else if(tipoTorreta == "Triple"
+            && worldControl.TorretasTriplesGeneradas >= 1)
+        {
+            worldControl.alert("Máximo de una torreta triple");
+            soundManager.SelectAudio(2, 1);
+        }
+        else if (tipoTorreta == "Normal"
+           && worldControl.TorretasNormalesGeneradas >= 3)
+        {
+            worldControl.alert("Máximo de tres torretas normales");
+            soundManager.SelectAudio(2, 1);
         }
         //Si tengo dinero me lo resta y puedo hacer lo demas
         else
@@ -66,6 +79,11 @@ public class SpawnTurretControl : MonoBehaviour, IPointerDownHandler, IPointerUp
 
             // Crea una instancia del prefab en la posición del start
             torretaInstanciada = Instantiate(prefabTurret1, this.transform.position, Quaternion.identity);
+            if (tipoTorreta == "Normal") {
+                worldControl.TorretasNormalesGeneradas++;
+            } else if (tipoTorreta == "Triple") {
+                worldControl.TorretasTriplesGeneradas++;
+            }
         }
        
 
@@ -98,6 +116,14 @@ public class SpawnTurretControl : MonoBehaviour, IPointerDownHandler, IPointerUp
 
                     //Se destruye
                     Destroy(torretaInstanciada);
+                    if (tipoTorreta == "Normal")
+                    {
+                        worldControl.TorretasNormalesGeneradas--;
+                    }
+                    else if (tipoTorreta == "Triple")
+                    {
+                        worldControl.TorretasTriplesGeneradas--;
+                    }
                 }
 
 
@@ -110,7 +136,14 @@ public class SpawnTurretControl : MonoBehaviour, IPointerDownHandler, IPointerUp
 
                 //Se destruye
                 Destroy(torretaInstanciada);
-
+                if (tipoTorreta == "Normal")
+                {
+                    worldControl.TorretasNormalesGeneradas--;
+                }
+                else if (tipoTorreta == "Triple")
+                {
+                    worldControl.TorretasTriplesGeneradas--;
+                }
             }
 
 
