@@ -52,7 +52,7 @@ MonoBehaviour:
   objectiveAt: {fileID: 0}
   enemyShooting: {fileID: 0}
   ballPrefab: {fileID: 7541475116213945127, guid: 24453a8b896869f4fbfd65ed4dc2d828, type: 3}
-  shootInterval: 1
+  shootInterval: 0.5
   shooting: 0
   worldControl: {fileID: 0}
   maxDistance: 5

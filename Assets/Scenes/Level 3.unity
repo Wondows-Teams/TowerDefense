@@ -1860,9 +1860,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesAppeared: 0
-  monedas: 400
+  monedas: 100
   vida: 100
-  maxEnemies: 30
+  maxEnemies: 50
   prefab: {fileID: 3454764377527691658, guid: 22e7cd23ef080bf42a6a5042584af066, type: 3}
   prefab2: {fileID: 3454764377527691658, guid: a435fdd4af79fcf4191cfd4d17c5283b, type: 3}
   defeatScreen: {fileID: 1879017651}
@@ -1873,11 +1873,11 @@ MonoBehaviour:
   start: {fileID: 1053861594}
   start2: {fileID: 491533014}
   start3: {fileID: 0}
-  spawnInterval: 4
-  moneyInterval: 15
+  spawnInterval: 3
+  moneyInterval: 5
   enemigos: []
-  counterToBigEnemy: 3
-  moneyAutoCantidad: 50
+  counterToBigEnemy: 7
+  moneyAutoCantidad: 10
   alertText: {fileID: 1211845473}
 --- !u!1001 &555785693
 PrefabInstance:
